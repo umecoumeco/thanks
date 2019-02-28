@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>♡Thanks Words♡</title>
+</head>
+
+<button type="button" id="button">
+    <font size="3">ここを押してね♡</font>
+</button>
+<p id="thanks"></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var thanks = ["ありがとう", "thanks!", "お礼の言葉", "感謝のことば", "感謝の言葉", "謝辞", "お礼", "感謝", "感謝いたします", "恩に着るよ", "感謝します", "有難うございます", "有難う", "有難い", "有難き幸せ", "感謝いたす", "忝い", "恩に着る", "有り難う", "どうもありがとう", "多謝", "かたじけない"];
+
+    var length = thanks.length;
+    console.log(length);
+    $("#button").on("click", function () {
+        var length = thanks.length;
+        console.log(length);
+        let rand = Math.floor(Math.random() * length);
+        console.log(rand);
+        $("#thanks").text(thanks[rand]);
+        console.log(thanks[rand]);
+    });
+</script>
+</body>
+
+</html>
