@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>あとだし・じゃんけん</title>
+</head>
+
+<body>
+    <p>★ルール説明★</p>
+    <p>・このゲームはあとだしじゃんけんゲームです。★Start★ボタンを押して、3秒以内に、命令にでた通りのじゃんけんを行ってください</p>
+    <p>・命令通りにじゃんけんを行うことができれば、残り時間があなたの得点になります。</p>
+    <p>・命令に従えなかった場合、もしくは時間切れになった場合は、あなたのライフが1つ減ります。</p>
+    <p>・ライフが０になったら、ゲームオーバーです。</p>
+    <button id="start">★Start★</button>
+    <h3 id="game_over"></h3>
+    <p id="order">命令:</p>
+    <p id="com_hand">コンピュータの手:</p>
+    <p id="time">残り時間：</p>
+    <button id="gu">グー</button>
+    <button id="choki">チョキ</button>
+    <button id="par">パー</button>
+    <p id="a_result">結果:</p>
+    <p id="m_point">あなたの得点：0</p>
+    <p id="m_life">残ライフ：3</p>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        var order_card = 0;
+        var random = 0;
+        var my_hand = 0;
+        var result = 0;
+        var answer_flg = 0;
+        var my_point = 0;
+        var point_all = 0;
+        var my_life = 3;
+
+        $("#start").on("click", function () {
+            answer_flg = 0;
+            $("#m_life").text("残ライフ：" + my_life);
+            order_card = Math.floor(Math.random() * 3);
+            if (order_card == 0) {
+                $("#order").text("命令：あいこ！");
+            } else if (order_card == 1) {
+                $("#order").text("命令：負けて！");
+            } else {
+                $("#order").text("命令：勝って！");
+            }
+            com_rand();
+            setTimeout(count03, 1000);
+            setTimeout(count02, 2000);
+            setTimeout(count01, 3000);
+            setTimeout(count04, 4000);
+            $("#gu").attr('disabled', false);
+            $("#choki").attr('disabled', false);
+            $("#par").attr('disabled', false);
+            $("#a_result").text("結果：");
+        });
+
+        var random = "";
+        var my_hand = "";
+        $("#gu").on("click", function () {
+            my_hand = 0;
+            jan_result();
+            all_result();
+        });
+
+        $("#choki").on("click", function () {
+            my_hand = 1;
+            jan_result();
+            all_result();
+        });
+
+        $("#par").on("click", function () {
+            my_hand = 2;
+            jan_result();
+            all_result();
+        });
+
+        function count01() {
+            if (answer_flg == 0) {
+                $("#time").text("残り時間：1秒");
+            } else if (answer_flg == 1) {
+                my_point = 2;
+                point_all = point_all + my_point;
+                $("#m_point").text("あなたの得点:" + point_all);
+                answer_flg = 2;
+            }
+        }
+        function count02() {
+            if (answer_flg == 0) {
+                $("#time").text("残り時間：2秒");
+            } else if (answer_flg == 1) {
+                my_point = 3;
+                point_all = point_all + my_point;
+                $("#m_point").text("あなたの得点:" + point_all);
+                answer_flg = 2;
+            }
+        }
+        function count03() {
+            if (answer_flg == 0) {
+                $("#time").text("残り時間：3秒");
+            }
+        }
+        function count04() {
+            if (answer_flg == 0) {
+                $("#time").text("残り時間：時間切れ");
+                $("#a_result").text("結果：時間切れ！！！");
+                $("#gu").attr('disabled', true);
+                $("#choki").attr('disabled', true);
+                $("#par").attr('disabled', true);
+                my_life_count();
+            } else if (answer_flg == 1) {
+                my_point = 1;
+                point_all = point_all + my_point;
+                $("#m_point").text("あなたの得点:" + point_all);
+            }
+        }
+
+        function my_life_count() {
+            my_life = my_life - 1;
+            if (my_life == 0) {
+                $("#m_life").text("残ライフ：" + my_life);
+                $("#start").attr('disabled', true);
+                $("#game_over").text("GAME OVER!!!");
+            } else {
+                $("#m_life").text("残ライフ：" + my_life);
+            }
+        }
+
+
+        function com_rand() {
+            random = Math.floor(Math.random() * 3);
+            if (random == 0) {
+                $("#com_hand").text("コンピュータの手：グー");
+            } else if (random == 1) {
+                $("#com_hand").text("コンピュータの手：チョキ");
+            } else {
+                $("#com_hand").text("コンピュータの手：パー")
+            }
+        }
+
+        function jan_result() {
+            result = (my_hand - random + 3) % 3;
+            answer_flg = 1;
+        }
+
+        function all_result() {
+            console.log(order_card);
+            console.log(result);
+            if (order_card == result) {
+                $("#a_result").text("結果：正解！");
+            } else {
+                $("#a_result").text("結果：はずれ・・・");
+                answer_flg = 2;
+                my_life_count();
+            }
+        }
+
+    </script>
+</body>
+
+</html>
