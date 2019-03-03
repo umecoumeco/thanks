@@ -30,8 +30,8 @@
         //★ストップウォッチ    
         var count = 0;
         var time = 0;
-        var min = 0;
-        var sec = 0;
+        // var min = 0;
+        // var sec = 0;
 
         $("#start").on("click", function () {
             time = setInterval(countup, 1000);
@@ -56,8 +56,8 @@
         }
 
         function translate01() {
-            min = Math.floor(count / 60);
-            sec = count % 60;
+            var min = Math.floor(count / 60);
+            var sec = count % 60;
             console.log(sec);
             $("#minutes").val(min);
             $("#seconds").val(sec);
@@ -66,19 +66,17 @@
         //★タイマー
         //スタートボタン押したら内容をとってくる
         var alltimer = 0;
-        var m_timer = 0;
-        var s_timer = 0;
-        var t_count = 0;
-        var t_min = 0;
-        var t_sec = 0;
+        // var m_timer = 0;
+        // var s_timer = 0;
+        // var t_min = 0;
+        // var t_sec = 0;
         var all = 0;
 
         $("#t_start").on("click", function () {
-            m_timer = $("#t_minutes").val();
-            s_timer = $("#t_seconds").val();
+            // m_timer = $("#t_minutes").val();
+            // s_timer = $("#t_seconds").val();
             translate02();
             all = setInterval(countdown, 1000);
-            console.log(alltimer);
         });
 
         $("#t_stop").on("click", function () {
@@ -87,13 +85,14 @@
 
         $("#t_reset").on("click", function () {
             all = 0;
-            // $("#time").val(count);
             $("#t_minutes").val(0);
             $("#t_seconds").val(0);
             $("#end").text("");
         });
 
         function translate02() {
+            var m_timer = $("#t_minutes").val();
+            var s_timer = $("#t_seconds").val();
             alltimer = Number(m_timer) * 60;
             alltimer = alltimer + Number(s_timer);
         }
@@ -104,8 +103,8 @@
                 $("#end").text("★終了★");
             } else {
                 alltimer = alltimer - 1;
-                t_min = Math.floor(alltimer / 60);
-                t_sec = alltimer % 60;
+                var t_min = Math.floor(alltimer / 60);
+                var t_sec = alltimer % 60;
                 $("#t_minutes").val(t_min);
                 $("#t_seconds").val(t_sec);
             }
