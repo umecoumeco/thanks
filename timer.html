@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h4>★ストップウォッチ★</h4>
+    <span style="color:#ff0000;">★ストップウォッチ★</span>
     <p><input id="time" type="text" value="0" style="text-align: right;" readonly="readonly" size="5">秒</p>
     <p><input id="minutes" type="text" value="0" style="text-align: right;" readonly="readonly" size="2">分<input
             id="seconds" type="text" value="0" style="text-align: right;" readonly="readonly" size="2">秒</p>
@@ -17,8 +17,17 @@
     <button id="stop">STOP</button>
     <button id="reset">RESET</button>
 
+    <p><span style="color:#ff0000;">★タイマー★</span></p>
+    <p><input id="t_minutes" type="text" value="" style="text-align: right;" size="2">分
+        <input id="t_seconds" type="text" value="" style="text-align: right;" size="2">秒</p>
+    <button id="t_start">START</button>
+    <button id="t_stop">STOP</button>
+    <button id="t_reset">RESET</button>
+    <p id="end"></p>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
+        //★ストップウォッチ    
         var count = 0;
         var time = 0;
         var min = 0;
@@ -42,11 +51,11 @@
 
         function countup() {
             count = count + 1;
-            translate();
+            translate01();
             $("#time").val(count);
         }
 
-        function translate() {
+        function translate01() {
             min = Math.floor(count / 60);
             sec = count % 60;
             console.log(sec);
@@ -54,6 +63,53 @@
             $("#seconds").val(sec);
         }
 
+        //★タイマー
+        //スタートボタン押したら内容をとってくる
+        var alltimer = 0;
+        var m_timer = 0;
+        var s_timer = 0;
+        var t_count = 0;
+        var t_min = 0;
+        var t_sec = 0;
+        var all = 0;
+
+        $("#t_start").on("click", function () {
+            m_timer = $("#t_minutes").val();
+            s_timer = $("#t_seconds").val();
+            translate02();
+            all = setInterval(countdown, 1000);
+            console.log(alltimer);
+        });
+
+        $("#t_stop").on("click", function () {
+            clearInterval(all);
+        });
+
+        $("#t_reset").on("click", function () {
+            all = 0;
+            // $("#time").val(count);
+            $("#t_minutes").val(0);
+            $("#t_seconds").val(0);
+            $("#end").text("");
+        });
+
+        function translate02() {
+            alltimer = Number(m_timer) * 60;
+            alltimer = alltimer + Number(s_timer);
+        }
+
+        function countdown() {
+            if (alltimer == 0) {
+                clearInterval(all);
+                $("#end").text("★終了★");
+            } else {
+                alltimer = alltimer - 1;
+                t_min = Math.floor(alltimer / 60);
+                t_sec = alltimer % 60;
+                $("#t_minutes").val(t_min);
+                $("#t_seconds").val(t_sec);
+            }
+        }
 
     </script>
 </body>
