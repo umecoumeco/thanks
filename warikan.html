@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>割り勘アプリ</title>
+</head>
+
+<body>
+    <p style="color:pink">★傾斜割り勘アプリ★</p>
+    <p>合計金額 <input type="tel" id="total" size="10" style="text-align: right;">円</p>
+
+    <p>A:人数<input type="tel" id="people01" size="2" style="text-align: right;">人---傾斜<input type="tel"
+            id="inclination01" size="2" style="text-align: right;">掛け<button id="reset01">リセット</button>
+    </p>
+    <p>B:人数<input type="tel" id="people02" size="2" style="text-align: right;">人---傾斜<input type="tel"
+            id="inclination02" size="2" style="text-align: right;">掛け<button id="reset02">リセット</button>
+    </p>
+    <p>C:人数<input type="tel" id="people03" size="2" style="text-align: right;">人---傾斜<input type="tel"
+            id="inclination03" size="2" style="text-align: right;">掛け<button id="reset03">リセット</button>
+    </p>
+    <p>D:人数<input type="tel" id="people04" size="2" style="text-align: right;">人---傾斜<input type="tel"
+            id="inclination04" size="2" style="text-align: right;">掛け<button id="reset04">リセット</button>
+    </p>
+    <p>E:人数<input type="tel" id="people05" size="2" style="text-align: right;">人---傾斜<input type="tel"
+            id="inclination05" size="2" style="text-align: right;">掛け<button id="reset05">リセット</button>
+    </p>
+    <p><button id="calculation" style="color:red">★計算★</button></p>
+    <p id="a_result">A:</p>
+    <p id="b_result">B:</p>
+    <p id="c_result">C:</p>
+    <p id="d_result">D:</p>
+    <p id="e_result">E:</p>
+    <p id="franction">端数：</p>
+    <p><button id="reset_people">人数をリセット</button>
+        <button id="reset_inclination">傾斜をリセット</button>
+        <button id="reset_all">オールリセット</button></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $("#calculation").on("click", function () {
+            //単価の計算
+            var unit_price = 0;
+            var all = 0;
+            unit_price = Math.floor(Number($("#total").val()) / ((Number($("#people01").val()) * Number($("#inclination01").val())) + (Number($("#people02").val()) * Number($("#inclination02").val())) + (Number($("#people03").val()) * Number($("#inclination03").val())) + (Number($("#people04").val()) * Number($("#inclination04").val())) + (Number($("#people05").val()) * Number($("#inclination05").val()))));
+            console.log(unit_price);
+            //各自の持ち分計算
+            $("#a_result").text("A:" + Math.floor(unit_price * Number($("#inclination01").val())) + "円");
+            $("#b_result").text("B:" + Math.floor(unit_price * Number($("#inclination02").val())) + "円");
+            $("#c_result").text("C:" + Math.floor(unit_price * Number($("#inclination03").val())) + "円");
+            $("#d_result").text("D:" + Math.floor(unit_price * Number($("#inclination04").val())) + "円");
+            $("#e_result").text("E:" + Math.floor(unit_price * Number($("#inclination05").val())) + "円");
+            //端数の計算
+            // all = (unit_price * (Math.floor(Number($("#people01").val()) * Number($("#inclination01").val())))) + (unit_price * (Math.floor(Number($("#people02").val()) * Number($("#inclination02").val())))) + (unit_price * (Math.floor(Number($("#people03").val()) * Number($("#inclination03").val())))) + (unit_price * (Math.floor(Number($("#people04").val())) * Number($("#inclination04").val()))) + (unit_price * (Math.floor(Number($("#people05").val()) * Number($("#inclination05").val()))));
+            all = Math.floor(unit_price * Number($("#people01").val()) * Number($("#inclination01").val()));
+            all = all + Math.floor(unit_price * Number($("#people02").val()) * Number($("#inclination02").val()));
+            all = all + Math.floor(unit_price * Number($("#people03").val()) * Number($("#inclination03").val()));
+            all = all + Math.floor(unit_price * Number($("#people04").val()) * Number($("#inclination04").val()));
+            all = all + Math.floor(unit_price * Number($("#people05").val()) * Number($("#inclination05").val()));
+            $("#franction").text("端数：" + (Number($("#total").val()) - Number(all)) + "円");
+            console.log(all);
+            console.log(Number($("#total").val()) - all);
+        });
+
+        $("#reset01").on("click", function () {
+            $("#people01").val("");
+            $("#inclination01").val("");
+        });
+
+        $("#reset02").on("click", function () {
+            $("#people02").val("");
+            $("#inclination02").val("");
+        });
+
+        $("#reset03").on("click", function () {
+            $("#people03").val("");
+            $("#inclination03").val("");
+        });
+
+        $("#reset04").on("click", function () {
+            $("#people04").val("");
+            $("#inclination04").val("");
+        });
+
+        $("#reset05").on("click", function () {
+            $("#people05").val("");
+            $("#inclination05").val("");
+        });
+
+        $("#reset_people").on("click", function () {
+            people_reset();
+        });
+
+        $("#reset_inclination").on("click", function () {
+            inclination_reset();
+        });
+
+        $("#reset_all").on("click", function () {
+            people_reset();
+            inclination_reset();
+            $("#total").val("");
+        });
+
+        function people_reset() {
+            $("#people01").val("");
+            $("#people02").val("");
+            $("#people03").val("");
+            $("#people04").val("");
+            $("#people05").val("");
+        }
+
+        function inclination_reset() {
+            $("#inclination01").val("");
+            $("#inclination02").val("");
+            $("#inclination03").val("");
+            $("#inclination04").val("");
+            $("#inclination05").val("");
+        }
+
+
+    </script>
+</body>
+
+</html>
