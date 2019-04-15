@@ -1,0 +1,215 @@
+body{
+    width:1200px;
+    padding:0;
+    text-align:left;
+    /* font-size: 32px; */
+    background-color: darkorchid;
+}
+header{
+    text-align: center;
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+main{
+    border-bottom:1px solid #ccc;
+}
+
+td{
+    font-size: 1px;
+}
+
+
+
+/* p{
+    font-size:200%;
+    text-align: center;
+    border-bottom:1px solid #fff;
+    height:200px;
+}
+ul{
+    padding: 0;
+    border-top: 1px solid #000000;
+    display:table; 
+    table-layout: fixed;
+    width:100%;
+}
+li{
+    text-align: center;
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display:table-cell; 
+    cursor: pointer;
+}
+li:hover{
+    background: #0066CC;
+    color:#fff;
+} */
+
+/*人物のシルエット*/
+.lady_sil{
+    widows:300px;
+    height:300px;
+}
+.man_sil{
+    width:300px;
+    height:300px;
+}
+
+/*自分のハートの表示*/
+.myhrt_gr{
+  position: relative;
+  margin-left: 500px;
+} 
+.mygrayhrt_gr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-left: 360px;  
+}
+.mypinkhrt_gr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  margin-left: 360px; 
+}
+.mygrhrt03{
+    width:100px;
+    height:100px;
+}
+.mygrhrt02{
+    width:100px;
+    height:100px;
+}
+.mygrhrt01{
+    width:100px;
+    height:100px;
+}
+.mypihrt03{
+    width:100px;
+    height:100px;     
+}
+.mypihrt02{
+    width:100px;
+    height:100px;     
+}
+.mypihrt01{
+    width:100px;
+    height:100px;     
+}
+
+/*コンピュータのハートの表示*/
+.comhrt_gr{
+  position: relative;
+}
+.comgrayhrt_gr{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: absolute;
+  margin-left: 40px; 
+}
+.compinkhrt_gr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-left: 40px;
+}
+.comgrhrt03{
+    width:100px;
+    height:100px;
+}
+.comgrhrt02{
+    width:100px;
+    height:100px;
+}
+.comgrhrt01{
+    width:100px;
+    height:100px;
+}
+.compihrt03{
+    width:100px;
+    height:100px;     
+}
+.compihrt02{
+    width:100px;
+    height:100px;     
+}
+.compihrt01{
+    width:100px;
+    height:100px;     
+}
+
+/*人の画像*/
+.human{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    width: 100%;
+}
+/*女性側のじゃんけんの表示*/
+
+
+/*男性側のグーチョキパーの表示*/
+.men_janken{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gu_btn_man{
+    width:150px;
+    height:150px;
+}
+.gu_btn_man:hover{
+    transform: scale(1.05);  
+}
+
+.cho_btn_man{
+    width:150px;
+    height:150px;
+}
+.cho_btn_man:hover{
+    transform: scale(1.05);  
+}
+
+.par_btn_man{
+    width:150px;
+    height:150px;
+}
+.par_btn_man:hover{
+    transform: scale(1.05);  
+}
+
+/*スタートボタン*/
+.start_sentence {
+ 	position: relative;
+    display: inline-block;
+    margin-top: 30px;
+ 	margin-left: 270px;
+    padding-left: 300px;
+    padding-right:300px; 
+	min-width: 120px;
+ 	max-width: 100%;
+ 	color:ghostwhite;
+	font-size: 16px;
+    background-color: darkmagenta;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.start_sentence:hover{
+    transform: scale(1.05);  
+}
+
+
+
+.score{
+    color: darkorchid;
+}
+
